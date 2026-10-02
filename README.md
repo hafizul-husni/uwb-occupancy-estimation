@@ -16,7 +16,20 @@ A privacy-preserving system that counts how many people (0 to 3) are in a room u
 - Capturing only 64 of the 1016 taps (6%) was not enough. The occupancy information lives in the multipath tail after the direct-path peak (tap 743).
 - This is the first DIAG vs CIR comparison on the Qorvo DWM3001CDK platform.
 
+![Average CIR profile by occupancy level](images/cir_profile.png)
+*Average CIR profile. People change the multipath tail after the direct-path peak (shaded).*
+
+| Distance (DIAG) | RSSI (DIAG) |
+|---|---|
+| ![Distance](images/distance.png) | ![RSSI](images/rssi.png) |
+
+*The default DIAG output overlaps heavily between 1, 2, and 3 people.*
+
 ## System overview
+
+![Testbed](images/testbed.jpg)
+*Two DWM3001CDK boards (on the stands) facing each other, 185 cm apart. Faces are blurred.*
+
 
 ```
 Board A (Initiator) ──UWB TWR frames, Ch5 6.5 GHz──► Board B (Listener)
@@ -53,6 +66,8 @@ Board A (Initiator) ──UWB TWR frames, Ch5 6.5 GHz──► Board B (Listener
 | 2 persons | 80% | 94% | 86% |
 | 3 persons | 87% | 90% | 88% |
 
+![Per-class precision, recall and F1](images/per_class.png)
+
 ## Limitations and future work
 
 - 1 vs 2 persons is the hardest boundary: tail energy rises ~31% from empty to 1 person, but changes only ~2.6% from 1 to 2.
@@ -65,4 +80,4 @@ C, FreeRTOS, nRF52833, Qorvo DW3110 SDK, SEGGER J-Link / RTT, CMake, Python, Num
 
 ## Note on source code
 
-The original source code from this project was lost. This repository documents the system design, methodology, and results from the thesis. A rebuilt version of the analysis pipeline may be added later.
+The original source code was lost. `parse_cir.py` is recovered from the thesis appendix. The rest of the pipeline may be rebuilt later.
